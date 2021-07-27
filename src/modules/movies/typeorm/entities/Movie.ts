@@ -1,7 +1,9 @@
+import { SpectatorMovie } from '@modules/spectators/typeorm/entities/SpectatorMovie';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -17,6 +19,11 @@ export class Movie {
 
   @Column()
   synopsis: string;
+
+  @OneToMany(() => SpectatorMovie, spectator_movie => spectator_movie.movie, {
+    cascade: true,
+  })
+  spectator_movie: SpectatorMovie[];
 
   @CreateDateColumn()
   created_at: Date;
