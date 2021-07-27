@@ -31,7 +31,7 @@ export default class SpectatorsDetailsService {
 
     return {
       spectator,
-      count: countWatchedMovies ? countWatchedMovies.length : 0,
+      movies_watched: countWatchedMovies ? countWatchedMovies.length : 0,
     };
   }
 }
