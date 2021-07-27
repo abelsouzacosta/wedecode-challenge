@@ -8,4 +8,6 @@ spectatorsRouter.get('/', controller.index);
 
 spectatorsRouter.post('/', controller.create);
 
+spectatorsRouter.post('/:spectator_id/set_watched', controller.attach);
+
 export { spectatorsRouter };

@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import AttachSpectatorToAMovieService from '../services/AttachSpectatorToAMovieService';
 import CreateSpectatorService from '../services/CreateSpectatorService';
 import ListSpectatorsService from '../services/ListSpectatorsService';
 
@@ -19,5 +20,16 @@ export default class SpectatorsController {
     const spectator = await create.execute({ name });
 
     return response.status(200).json(spectator);
+  }
+
+  public async attach(request: Request, response: Response): Promise<Response> {
+    const { spectator_id } = request.params;
+    const { movie_id } = request.body;
+
+    const attach = new AttachSpectatorToAMovieService();
+
+    const watch = await attach.execute({ movie_id, spectator_id });
+
+    return response.status(200).json(watch);
   }
 }

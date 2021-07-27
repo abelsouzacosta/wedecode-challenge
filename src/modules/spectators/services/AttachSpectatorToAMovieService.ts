@@ -28,7 +28,11 @@ export default class AttachSpectatorToAMovieService {
     if (!spectator) throw new ApplicationError('Spectator not found');
 
     // busca pelo filme para verificar se ele realmente existe no banco de dados
-    const movie = await movieRepository.findById(movie_id);
+    const movie = await movieRepository.findOne({
+      where: {
+        id: movie_id,
+      },
+    });
 
     if (!movie) throw new ApplicationError('Movie not found');
 

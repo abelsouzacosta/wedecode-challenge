@@ -1,13 +1,17 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { Movie } from '../entities/Movie';
 
+interface IMovie {
+  movie_id: string;
+}
+
 @EntityRepository(Movie)
 export class MovieRepository extends Repository<Movie> {
   // encontra um filme pelo id passado
-  public async findById(id: string): Promise<Movie | undefined> {
+  public async findById({ movie_id }: IMovie): Promise<Movie | undefined> {
     const movie = await this.findOne({
       where: {
-        id,
+        id: movie_id,
       },
     });
 
