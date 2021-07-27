@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { movieRouter } from '@modules/movies/routes';
 
 const router = Router();
 
@@ -7,5 +8,7 @@ router.get('/', (req, res) => {
     message: 'Olá mundo',
   });
 });
+
+router.use('/movies', movieRouter);
 
 export { router };
