@@ -35,4 +35,17 @@ export class SpectatorMovieRepository extends Repository<SpectatorMovie> {
 
     return spectator;
   }
+
+  // faz uma busca pelo id do filme
+  public async findByMovieId(
+    movie_id: string,
+  ): Promise<SpectatorMovie[] | undefined> {
+    const movie = await this.find({
+      where: {
+        movie_id,
+      },
+    });
+
+    return movie;
+  }
 }
