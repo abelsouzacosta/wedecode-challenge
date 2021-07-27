@@ -1,13 +1,18 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { SpectatorMovie } from '../entities/SpectatorMovie';
 
+interface IWatch {
+  spectator_id: string;
+  movie_id: string;
+}
+
 @EntityRepository(SpectatorMovie)
 export class SpectatorMovieRepository extends Repository<SpectatorMovie> {
   // ao receber os parâmetros vai inserir as informações dentro do banco de dados
-  public async createWatch(
-    spectator_id: string,
-    movie_id: string,
-  ): Promise<SpectatorMovie | undefined> {
+  public async createWatch({
+    movie_id,
+    spectator_id,
+  }: IWatch): Promise<SpectatorMovie | undefined> {
     const watch = this.create({
       movie_id,
       spectator_id,
