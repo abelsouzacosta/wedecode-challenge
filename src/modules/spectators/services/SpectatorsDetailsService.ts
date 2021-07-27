@@ -23,11 +23,9 @@ export default class SpectatorsDetailsService {
 
     // encontra as instâncias do id do espectador na tabela de relacionamento
     // essa será a quantidade de filmes assistidos
-    const countWatchedMovies = await spectatorMovieRepository.find({
-      where: {
-        spectator_id: spectator.id,
-      },
-    });
+    const countWatchedMovies = await spectatorMovieRepository.findBySpectatorId(
+      id,
+    );
 
     return {
       spectator,
