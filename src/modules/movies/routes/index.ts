@@ -8,4 +8,6 @@ movieRouter.get('/', controller.index);
 
 movieRouter.post('/', controller.create);
 
+movieRouter.get('/:id', controller.details);
+
 export { movieRouter };
