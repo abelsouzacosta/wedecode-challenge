@@ -1,7 +1,16 @@
 import { Request, Response } from 'express';
 import CreateMovieService from '../services/CreateMovieService';
+import ListMovieService from '../services/ListMoviesService';
 
 export default class MovieController {
+  public async index(request: Request, response: Response): Promise<Response> {
+    const list = new ListMovieService();
+
+    const movies = await list.execute();
+
+    return response.status(200).json(movies);
+  }
+
   public async create(request: Request, response: Response): Promise<Response> {
     const { title, synopsis } = request.body;
 
