@@ -10,4 +10,6 @@ spectatorsRouter.post('/', controller.create);
 
 spectatorsRouter.post('/:spectator_id/set_watched', controller.attach);
 
+spectatorsRouter.get('/:id', controller.details);
+
 export { spectatorsRouter };

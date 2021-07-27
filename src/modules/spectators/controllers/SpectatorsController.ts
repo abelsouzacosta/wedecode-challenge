@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import AttachSpectatorToAMovieService from '../services/AttachSpectatorToAMovieService';
 import CreateSpectatorService from '../services/CreateSpectatorService';
 import ListSpectatorsService from '../services/ListSpectatorsService';
+import SpectatorsDetailsService from '../services/SpectatorsDetailsService';
 
 export default class SpectatorsController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -31,5 +32,18 @@ export default class SpectatorsController {
     const watch = await attach.execute({ movie_id, spectator_id });
 
     return response.status(200).json(watch);
+  }
+
+  public async details(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { id } = request.params;
+
+    const details = new SpectatorsDetailsService();
+
+    const spectator = await details.execute({ id });
+
+    return response.status(200).json(spectator);
   }
 }
